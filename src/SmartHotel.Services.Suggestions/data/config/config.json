@@ -5,20 +5,31 @@
     "database": "suggestionsdb",
     "host": "localhost",
     "port": "6433",
-    "dialect": "mssql"
+    "dialect": "mssql",
+    "dialectOptions": {
+      "options": {
+        "encrypt": false,
+        "trustServerCertificate": true
+      }
+    }
   },
   "docker": {
     "use_env_variable": "SUGGESTIONS_DATABASE_URL",
     "dialect": "mssql",
     "dialectOptions": {
-      "encrypt": false
+      "options": {
+        "encrypt": false,
+        "trustServerCertificate": true
+      }
     }
   },
   "production": {
     "use_env_variable": "SUGGESTIONS_DATABASE_URL",
     "dialect": "mssql",
     "dialectOptions": {
-      "encrypt": true
+      "options": {
+        "encrypt": true
+      }
     }
   }
 }

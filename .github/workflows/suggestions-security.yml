@@ -1,0 +1,36 @@
+name: Suggestions dependency verification
+on:
+  pull_request:
+    paths: ['src/SmartHotel.Services.Suggestions/**', '.github/workflows/suggestions-security.yml']
+  push:
+    branches: [master, main]
+    paths: ['src/SmartHotel.Services.Suggestions/**', '.github/workflows/suggestions-security.yml']
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    services:
+      sqlserver:
+        image: mcr.microsoft.com/mssql/server:2022-latest
+        env:
+          ACCEPT_EULA: 'Y'
+          MSSQL_SA_PASSWORD: 'Local_Test_Only_9261!'
+        ports: ['1433:1433']
+    defaults:
+      run:
+        working-directory: src/SmartHotel.Services.Suggestions
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: src/SmartHotel.Services.Suggestions/package-lock.json
+      - run: npm ci --ignore-scripts
+      - run: npm audit --audit-level=critical
+      - run: npm test
+        env:
+          TEST_SQLSERVER_URL: 'mssql://sa:Local_Test_Only_9261!@127.0.0.1:1433/master'
+      - run: docker build --tag suggestions-security-check .
