@@ -16,7 +16,7 @@
     "debug": "^2.2.0",
     "express": "4.21.2",
     "geolib": "^2.0.23",
-    "morgan": "1.10.1",
+    "morgan": "1.12.1",
     "pug": "3.0.3",
     "sequelize": "6.37.8",
     "sequelize-cli": "6.6.5",
