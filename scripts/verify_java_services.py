@@ -76,6 +76,8 @@ with sync_playwright() as playwright:
                         errors = []
                         page.on("pageerror", lambda error: errors.append(str(error)))
                         page.goto(base + "/swagger-ui.html")
+                        # The existing UI configuration starts controller groups collapsed.
+                        page.locator(".opblock-tag").first.click()
                         try:
                             page.locator(".opblock").first.wait_for(timeout=30000)
                         except Exception:
