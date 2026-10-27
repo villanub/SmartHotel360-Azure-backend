@@ -88,7 +88,7 @@ with sync_playwright() as playwright:
                         operation.locator(".opblock-summary").click()
                         operation.get_by_role("button", name="Try it out").click()
                         if service == "Reviews":
-                            operation.locator('input[placeholder="id"]').fill("1")
+                            operation.locator(".parameters-col_description input").fill("1")
                         operation.get_by_role("button", name="Execute", exact=True).click()
                         operation.locator(".live-responses-table .response-col_status").filter(has_text="200").wait_for()
                         page.close()
