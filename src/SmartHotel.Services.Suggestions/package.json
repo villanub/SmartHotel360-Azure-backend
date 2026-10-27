@@ -11,10 +11,10 @@
     "name": "fredy"
   },
   "dependencies": {
-    "body-parser": "^1.15.0",
+    "body-parser": "^1.20.9",
     "cookie-parser": "^1.4.0",
     "debug": "^2.2.0",
-    "express": "4.21.2",
+    "express": "4.22.3",
     "geolib": "^2.0.23",
     "morgan": "1.10.1",
     "pug": "3.0.3",
