@@ -1,9 +1,8 @@
-﻿FROM node:6-alpine
+FROM node:24-alpine
 ENV NODE_ENV production
 WORKDIR /usr/src/app
-COPY ["package.json", "./"]
-RUN npm install -g sequelize-cli
-RUN npm install --production --silent && mv node_modules ../
+COPY package.json package-lock.json ./
+RUN npm ci --omit=dev --ignore-scripts
 COPY . .
 EXPOSE 80
 CMD npm start

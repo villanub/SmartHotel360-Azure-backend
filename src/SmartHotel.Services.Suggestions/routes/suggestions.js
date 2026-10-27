@@ -4,7 +4,7 @@ var suggestionsQuery = require('../queries/suggestionsQuery');
 
 var router = express.Router();
 
-router.get('/', function (req, res) {
+router.get('/', function (req, res, next) {
     var latitude = req.query.latitude;
     var longitude = req.query.longitude;
 
@@ -17,7 +17,7 @@ router.get('/', function (req, res) {
         longitude: longitude
     }).then(function (suggestions) {
         res.send(suggestions);
-    });
+    }).catch(next);
 });
 
 module.exports = router;

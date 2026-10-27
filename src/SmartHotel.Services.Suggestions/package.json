@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "test": "node --test tests/*.test.cjs",
     "start": "sequelize db:create; sequelize db:migrate && sequelize db:seed:all && node app"
   },
   "description": "SmartHotel.Services.Suggestions",
@@ -13,16 +14,16 @@
     "body-parser": "^1.15.0",
     "cookie-parser": "^1.4.0",
     "debug": "^2.2.0",
-    "express": "^4.14.0",
+    "express": "4.21.2",
     "geolib": "^2.0.23",
-    "morgan": "^1.7.0",
-    "pug": "^2.0.0-beta6",
-    "sequelize": "^4.10.0",
-    "sequelize-cli": "^3.0.0-3",
+    "morgan": "1.10.1",
+    "pug": "3.0.3",
+    "sequelize": "6.37.8",
+    "sequelize-cli": "6.6.5",
     "serve-favicon": "^2.3.0",
-    "tedious": "^2.0.0"
+    "tedious": "20.3.8"
   },
   "engines": {
-    "node": "~6.10.x"
+    "node": ">=22"
   }
 }
