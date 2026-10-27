@@ -76,7 +76,11 @@ with sync_playwright() as playwright:
                         errors = []
                         page.on("pageerror", lambda error: errors.append(str(error)))
                         page.goto(base + "/swagger-ui.html")
-                        page.locator(".opblock").first.wait_for(timeout=30000)
+                        try:
+                            page.locator(".opblock").first.wait_for(timeout=30000)
+                        except Exception:
+                            print("Swagger diagnostic:", resources, spec.get("swagger"), spec.get("info"), errors, page.locator("body").inner_text(), flush=True)
+                            raise
                         assert not errors, errors
                         operation = page.locator(".opblock-get").filter(has=page.locator('[data-path="' + ("/tasks" if service == "Tasks" else "/reviews/hotel/{id}") + '"]')).first
                         operation.locator(".opblock-summary").click()
