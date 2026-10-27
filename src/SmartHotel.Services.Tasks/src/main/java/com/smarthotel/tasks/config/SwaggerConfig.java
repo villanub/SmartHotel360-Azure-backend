@@ -18,7 +18,7 @@ public class SwaggerConfig {
     @Bean
     public Docket productApi() {
         Contact contact = new Contact("", "", "");
-        ApiInfo apiInfo = new ApiInfo("Tasks Api", "", "1.0", "", contact, "", "");
+        ApiInfo apiInfo = new ApiInfo("Tasks Api", "", "1.0", "", contact, "", "", java.util.Collections.emptyList());
         return new Docket(DocumentationType.SPRING_WEB)
                 .apiInfo(apiInfo)
                 .select().apis(RequestHandlerSelectors.basePackage("com.smarthotel.tasks.controllers"))
